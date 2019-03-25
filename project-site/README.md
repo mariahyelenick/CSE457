@@ -24,3 +24,9 @@ More Brainstorming
 - The biggest concerns we have with the sunburst is that groups may get really small and difficult to view the further out from the center you go, so we might also want to have a visualization that allows for more depth for the user to explore data. Maybe some kind of clustering graph?
 
 - We'd also like to represent the personal essays somehow, so a third part could be a senten tree of the text data, that could be filtered through interaction with the sunburst (and maybe the more in-depth graph if it's feasible to implement that)
+
+
+Resources Used
+- https://bl.ocks.org/kerryrodden/766f8f6d31f645c39f488a0befa1e3c8 (Sunburst Help)
+- https://bl.ocks.org/denjn5/e1cdbbe586ac31747b4a304f8f86efa5 (Simpler Sunburst Help)
+- https://stackoverflow.com/questions/7176908/how-to-get-index-of-object-by-its-property-in-javascript (finding objects with specific attributes)
