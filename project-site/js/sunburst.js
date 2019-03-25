@@ -22,60 +22,80 @@ SunburstDisplay.prototype.init = function() {
 
 SunburstDisplay.prototype.wrangle = function() {
     var vis = this;
-    vis.layers = [];
-    // vis.layers.push("sex");
-    // vis.layers.push("actual_religion");
+    var categories = ["zodiac", "sex", "startagebucket"];
+    var catsWithOptions = [];
+    
+    var catsWithOptions = [];
 
-    var cat1 = {}; // "sex"
-    cat1.name = "sex";
-    var cat2 = {}; // "religion"
-    cat2.name = "actual_religion";
-    cat1.cats = [];
-    cat2.cats = [];
+    for (var i=0; i < categories.length; i++) {
+        var obj = {};
+        obj.catName = categories[i];
+        obj.optionNames = [];
+        catsWithOptions.push(obj);
+    }
 
     vis.data.forEach(function(d) {
-        //console.log(d[cat1.name]);
-        var i = findCatName(cat1.cats, d[cat1.name]);
-        if (i == -1) {
-            cat1.cats.push({catName: d[cat1.name], catCount: 1});
-        } else {
-            cat1.cats[i].catCount++;
+        for (var i=0; i < catsWithOptions.length; i++) {
+            if (!catsWithOptions[i].optionNames.includes(d[catsWithOptions[i].catName])) { // option exists in array already
+                catsWithOptions[i].optionNames.push(d[catsWithOptions[i].catName]);
+            }
         }
-        // if (!cat2.cats.includes(d[cat2.name])) {
-        //     cat2.cats.push(d[cat2.name]);
-        // }else {
-        //     var i = findCatName(cat2.cats, d[cat2.name]);
-        //     cat2.cats[i].catCount++;
-        // }
     });
-    console.log(cat1);
-    vis.layers.push(cat1);
-    vis.layers.push(cat2);
+    // console.log(catsWithOptions);
 
-    // var nodeData = {
-    //     "name": vis.layers[0].name, "children": [{
-    //         "name": vis.layers[0].cats[0],
-    //         "children": [
-    //             {"name": vis.layers[1].cats[0], "size": 4}, 
-    //             {"name": "Sub A2", "size": 4}
-    //         ]
-    //     }, {
-    //         "name": "Topic B",
-    //         "children": [{"name": "Sub B1", "size": 3}, {"name": "Sub B2", "size": 3}, {
-    //             "name": "Sub B3", "size": 3}]
-    //     }, {
-    //         "name": "Topic C",
-    //         "children": [{"name": "Sub A1", "size": 4}, {"name": "Sub A2", "size": 4}]
-    //     }]
-    // };
+    var nodeData = makeInnerData(catsWithOptions, 0, "Filtered Profiles", vis.data);
     
+    console.log(nodeData);
+
 }
 
-function findCatName(array, value) {
-    for(var i = 0; i < array.length; i += 1) {
-        if(array[i].catName == value) {
-            return i;
-        }
+// Do we actually use this?
+// function findIndexByAttr(array, attr, value) {
+//     for(var i = 0; i < array.length; i += 1) {
+//         if(array[i][attr] == value) {
+//             return i;
+//         }
+//     }
+//     return -1;
+// }
+
+function breakSetIntoOptions(cat, dataSet) {
+
+    var splitUp = {};
+    cat.optionNames.forEach(function(c) {
+        splitUp[c] = [];
+    });
+
+    dataSet.forEach(function(d) {
+        splitUp[d[cat.catName]].push(d);
+    });
+
+    return splitUp;
+}
+
+function makeLeafData(optionName, dataSet) {
+    var obj = {};
+    obj.name = optionName;
+    obj.size = dataSet.length;
+    return obj;
+}
+
+function makeInnerData(catsWithOptions, index, optionName, dataSet) {
+    var obj = {};
+    obj.name = optionName;
+    obj.sets = breakSetIntoOptions(catsWithOptions[index], dataSet);
+
+    if (index < catsWithOptions.length-1) {
+        obj.children = [];
+        catsWithOptions[index].optionNames.forEach(function(d) {
+            obj.children.push(makeInnerData(catsWithOptions, index+1, d, obj.sets[d]));
+        });
+    } else {
+        obj.children = [];
+        catsWithOptions[index].optionNames.forEach(function(d) {
+            obj.children.push(makeLeafData(d, obj.sets[d]));
+        });
     }
-    return -1;
+
+    return obj;
 }

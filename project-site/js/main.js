@@ -28,6 +28,15 @@ function loadData() {
                 d.pacific_islander = d.pacific_islander == "True";
                 d.startagebucket = parseInt(d.startagebucket);
                 d.white = d.white == "True";
+                // var loc = d.location.split(", ");
+                // d.city = loc[0];
+                // d.state = loc[1];
+                // if (loc.length == 3) {
+                //     d.country = loc[2];
+                // } else {
+                //     d.country = "usa";
+                // }
+                // console.log(d.city + " " + d.state + " " + d.country);
 
             });
             console.log(data);
