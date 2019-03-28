@@ -1,4 +1,3 @@
-
 SunburstDisplay = function(_data) {
     this.data = _data;
     this.init();
@@ -7,6 +6,9 @@ SunburstDisplay = function(_data) {
 
 SunburstDisplay.prototype.init = function() {
     var vis = this;
+    vis.tip = d3.tip().attr("class", "d3-tip").html(function(d) {
+        return d;
+    });
 
     var div = d3.select("#sunburst");
 
@@ -15,7 +17,32 @@ SunburstDisplay.prototype.init = function() {
     vis.svg = div.append("svg").attr("height", vis.svgHeight).attr("width", vis.svgWidth).attr("id", "sunburst_svg");
     vis.radius = Math.min(vis.svgHeight, vis.svgWidth) /2;
 
-    vis.wrangle();
+    vis.wrangledData = vis.wrangle();
+    var vLayout = d3.partition().size([2 * Math.PI, Math.min(vis.svgWidth, vis.svgHeight) / 2]);
+
+    var vRoot = d3.hierarchy(vis.wrangledData).sum(function (d) { 
+        return d.size;
+    });
+    var vNodes = vRoot.descendants();
+    vLayout(vRoot);
+    var vArc = d3.arc()
+        .startAngle(function (d) { return d.x0; })
+        .endAngle(function (d) { return d.x1; })
+        .innerRadius(function (d) { return d.y0; })
+        .outerRadius(function (d) { return d.y1; });
+
+    var g = vis.svg.append("g");
+    var color = d3.scaleOrdinal(d3.schemeCategory20b);
+    g.selectAll('path')
+        .data(vNodes)
+        .enter()
+        .append('path')
+        .attr("d", vArc)
+        .attr("transform", "translate(" + vis.svgWidth/2 + ", 300)")
+        .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
+        .on("mouseover", vis.tip.show)
+        .on("mouseout", vis.tip.hide);
+    vis.svg.call(vis.tip);
 
 
 }
@@ -45,7 +72,9 @@ SunburstDisplay.prototype.wrangle = function() {
 
     var nodeData = makeInnerData(catsWithOptions, 0, "Filtered Profiles", vis.data);
     
+   
     console.log(nodeData);
+    return nodeData;
 
 }
 
