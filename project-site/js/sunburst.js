@@ -11,6 +11,7 @@ SunburstDisplay.prototype.init = function() {
     });
 
     var div = d3.select("#sunburst");
+    div.selectAll("*").remove();
 
     vis.svgWidth = div.node().getBoundingClientRect().width;
     vis.svgHeight = 600;    
@@ -43,7 +44,7 @@ SunburstDisplay.prototype.init = function() {
         .attr("d", vArc)
         .attr("transform", "translate(" + vis.svgWidth/2 + ", 300)")
         .style("fill", function (d) { 
-            if (d.depth == 0 || d.data.name == "" || (d.depth == 2 && d.parent.data.name == "") || (d.depth == 3 && d.parent.parent.data.name == "")) {
+            if (d.depth == 0 || (d.depth == 1 && d.data.name == "") || (d.depth == 2 && d.parent.data.name == "") || (d.depth == 3 && d.parent.parent.data.name == "")) {
                 return "none";
             } else if(d.depth == 1) {
                 return colorInner(d.data.name);
@@ -54,10 +55,8 @@ SunburstDisplay.prototype.init = function() {
             else {
                 return colorOuter(d.data.name);
             }
-            // return colorInner((d.children ? d : d.parent).data.name); 
         })
         .attr("class", function(d) {
-            console.log(d);
             if (d.data.size == 0) {
                 return "empty wedge";
             }
@@ -66,13 +65,11 @@ SunburstDisplay.prototype.init = function() {
         .on("mouseover", vis.tip.show)
         .on("mouseout", vis.tip.hide);
     vis.svg.call(vis.tip);
-
-
 }
 
 SunburstDisplay.prototype.wrangle = function() {
     var vis = this;
-    var categories = ["sex", "smokes", "body_type"];
+    var categories = getCategories();
     var catsWithOptions = [];
     
     var catsWithOptions = [];
@@ -91,6 +88,15 @@ SunburstDisplay.prototype.wrangle = function() {
             }
         }
     });
+    // console.log(catsWithOptions);
+    // catsWithOptions.optionNames.sort((a,b) => {
+    //     // if (a)
+    //     console.log(a);
+    //     return -1;
+    //     // if (typeof a == "number") {
+
+    //     // }
+    // });
     // console.log(catsWithOptions);
 
     var nodeData = makeInnerData(catsWithOptions, 0, "Filtered Profiles", vis.data);
@@ -146,4 +152,13 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
     }
 
     return obj;
+}
+
+function getCategories() {
+    var array = $("#sortable").sortable('toArray');
+    var newarray = [];
+    newarray.push(array[0]);
+    newarray.push(array[1]);
+    newarray.push(array[2]);
+    return newarray;
 }

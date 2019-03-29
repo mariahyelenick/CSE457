@@ -238,3 +238,7 @@ input[type=range]:focus::-ms-fill-upper {
 .blue-background-class {
 	background-color: #C8EBFB;
 }
+
+#sortable {
+	list-style-type: none;
+}

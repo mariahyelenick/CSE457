@@ -15,13 +15,21 @@
 <p></p>
 
 <ul id="sortable">
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+  <li id="sex" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Sex</li>
+  <li id="startagebucket10" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Age bucket</li>
+  <li id="haspets" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Has pets</li>
+  <li id="height" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Height</li>
+  <li id="ethnicityGroup" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Ethnicity</li>
+  <li id="smokes" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Smokes</li>
+  <li id="drinks" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Drinks</li>
+  <li id="drugs" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Does drugs</li>
+  <li id="body_type" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Body type</li>
+  <li id="diet" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Diet</li>
+  <li id="orientation" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Orientation</li>
+  <li id="actual_religion" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Actual religion</li>
+  <li id="thoughts_on_religion" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Thoughts on religion</li>
+  <li id="zodiac" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Zodiac sign</li>
+  <li id="zodiac_thoughts" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Thoughts on zodiac signs</li>
 </ul>
 
 <div id="sunburst"></div>
@@ -29,15 +37,20 @@
 <!-- https://jqueryui.com/sortable/ -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-  $( function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-  } );
-</script>
 <script src="js/d3.min.js"></script>
 <script src="bower_components/d3-tip/index.js"></script>
 <script src="js/sunburst.js"></script>
+<script>
+$( function() {
+  $( "#sortable" ).sortable({
+    update: function(event, ui) {
+      var idsInOrder = $("#sortable").sortable('toArray');
+      sunburst.init();
+    }
+  });
+  $( "#sortable" ).disableSelection();
+} );
+</script>
 <script src="js/main.js"></script>
 </body>
 
