@@ -7,7 +7,7 @@ SunburstDisplay = function(_data) {
 SunburstDisplay.prototype.init = function() {
     var vis = this;
     vis.tip = d3.tip().attr("class", "d3-tip").html(function(d) {
-        return d;
+        return d.data.name;
     });
 
     var div = d3.select("#sunburst");
@@ -39,7 +39,18 @@ SunburstDisplay.prototype.init = function() {
         .append('path')
         .attr("d", vArc)
         .attr("transform", "translate(" + vis.svgWidth/2 + ", 300)")
-        .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); })
+        .style("fill", function (d) { 
+            // if(d.children && d.children[0].children) {
+            //     return color(d.data.name);
+            // }
+            // else if(d.children) {
+            //     return color(d.parent.data.name);
+            // }
+            // else {
+            //     return color(d.parent.parent.data.name);
+            // }
+            return color((d.children ? d : d.parent).data.name); 
+        })
         .on("mouseover", vis.tip.show)
         .on("mouseout", vis.tip.hide);
     vis.svg.call(vis.tip);
@@ -78,25 +89,20 @@ SunburstDisplay.prototype.wrangle = function() {
 
 }
 
-// Do we actually use this?
-// function findIndexByAttr(array, attr, value) {
-//     for(var i = 0; i < array.length; i += 1) {
-//         if(array[i][attr] == value) {
-//             return i;
-//         }
-//     }
-//     return -1;
-// }
-
 function breakSetIntoOptions(cat, dataSet) {
-
+    // console.log(cat)
     var splitUp = {};
     cat.optionNames.forEach(function(c) {
+
         splitUp[c] = [];
+
     });
 
     dataSet.forEach(function(d) {
-        splitUp[d[cat.catName]].push(d);
+        // if (d[cat.catName] != "") {
+            // console.log(d[cat.catName]);
+            splitUp[d[cat.catName]].push(d);
+        // }
     });
 
     return splitUp;
@@ -113,6 +119,7 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
     var obj = {};
     obj.name = optionName;
     obj.sets = breakSetIntoOptions(catsWithOptions[index], dataSet);
+
 
     if (index < catsWithOptions.length-1) {
         obj.children = [];
