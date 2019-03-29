@@ -31,3 +31,13 @@ Resources Used
 - https://bl.ocks.org/denjn5/e1cdbbe586ac31747b4a304f8f86efa5 (Simpler Sunburst Help)
 - https://stackoverflow.com/questions/7176908/how-to-get-index-of-object-by-its-property-in-javascript (finding objects with specific attributes)
 - https://github.com/SortableJS/Sortable (drag order of attributes for sunburst)
+
+3/28 Minutes
+- We got the sunburst to work! 
+- Right now you have to change the categories from the backend
+- The draggable sortable options work but don't update the categories yet
+
+To-Do's
+- Update color schemes
+- Get the draggable things
+- Sententree when you click on a category

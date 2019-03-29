@@ -32,7 +32,10 @@ SunburstDisplay.prototype.init = function() {
         .outerRadius(function (d) { return d.y1; });
 
     var g = vis.svg.append("g");
-    var color = d3.scaleOrdinal(d3.schemeCategory20b);
+    var colorInner = d3.scaleOrdinal(d3.schemeCategory20);
+    var colorMiddle = d3.scaleOrdinal(d3.schemeCategory20b);
+    var colorOuter = d3.scaleOrdinal(d3.schemeCategory20c);
+
     g.selectAll('path')
         .data(vNodes)
         .enter()
@@ -40,16 +43,25 @@ SunburstDisplay.prototype.init = function() {
         .attr("d", vArc)
         .attr("transform", "translate(" + vis.svgWidth/2 + ", 300)")
         .style("fill", function (d) { 
-            // if(d.children && d.children[0].children) {
-            //     return color(d.data.name);
-            // }
-            // else if(d.children) {
-            //     return color(d.parent.data.name);
-            // }
-            // else {
-            //     return color(d.parent.parent.data.name);
-            // }
-            return color((d.children ? d : d.parent).data.name); 
+            if (d.depth == 0 || d.data.name == "" || (d.depth == 2 && d.parent.data.name == "") || (d.depth == 3 && d.parent.parent.data.name == "")) {
+                return "none";
+            } else if(d.depth == 1) {
+                return colorInner(d.data.name);
+            }
+            else if(d.depth == 2) {
+                return colorMiddle(d.data.name);
+            }
+            else {
+                return colorOuter(d.data.name);
+            }
+            // return colorInner((d.children ? d : d.parent).data.name); 
+        })
+        .attr("class", function(d) {
+            console.log(d);
+            if (d.data.size == 0) {
+                return "empty wedge";
+            }
+            return "wedge";
         })
         .on("mouseover", vis.tip.show)
         .on("mouseout", vis.tip.hide);
@@ -60,7 +72,7 @@ SunburstDisplay.prototype.init = function() {
 
 SunburstDisplay.prototype.wrangle = function() {
     var vis = this;
-    var categories = ["zodiac", "sex", "startagebucket"];
+    var categories = ["sex", "smokes", "body_type"];
     var catsWithOptions = [];
     
     var catsWithOptions = [];
