@@ -15,19 +15,19 @@ function loadData() {
                 delete d["Unnamed: 0"];
 
                 d.age = parseInt(d.age);
-                d.asian = d.asian == "True";
-                d.black = d.black == "True";
-                d.endagebucket = parseInt(d.endagebucket);
-                d.haspets = d.haspets == "True";
+                d.asian = d.asian == "TRUE";
+                d.black = d.black == "TRUE";
+                d.endagebucket10 = parseInt(d.endagebucket10);
+                d.haspets = d.haspets == "TRUE";
                 d.height = parseInt(d.height);
-                d.hispanic = d.hispanic == "True";
-                d.indian = d.indian == "True";
-                d.middle_eastern = d.middle_eastern == "True";
-                d.native_american = d.native_american == "True";
-                d.other = d.other == "True";
-                d.pacific_islander = d.pacific_islander == "True";
-                d.startagebucket = parseInt(d.startagebucket);
-                d.white = d.white == "True";
+                d.hispanic = d.hispanic == "TRUE";
+                d.indian = d.indian == "TRUE";
+                d.middle_eastern = d.middle_eastern == "TRUE";
+                d.native_american = d.native_american == "TRUE";
+                d.other = d.other == "TRUE";
+                d.pacific_islander = d.pacific_islander == "TRUE";
+                d.startagebucket10 = parseInt(d.startagebucket10);
+                d.white = d.white == "TRUE";
                 d.ethnicityArr = parseEthnicities(d);
                 d.ethnicityGroup = ethnicityGrouper(d);
                 // var loc = d.location.split(", ");
@@ -61,6 +61,7 @@ function parseEthnicities(d) {
     if (d.indian) { arr.push("indian"); }
     if (d.hispanic) { arr.push("hispanic"); }
     if (d.asian) { arr.push("asian"); }
+    //console.log(arr);
     return arr;
 }
 
@@ -69,6 +70,7 @@ function ethnicityGrouper(d) {
         return"multi-racial";
     } else if (d.ethnicityArr.length == 1) {
         // console.log(d.ethnicityArr[0]);
+        console.log("cool");
         return d.ethnicityArr[0];
     } else {
         return "";
