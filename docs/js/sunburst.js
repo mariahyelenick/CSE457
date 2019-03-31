@@ -101,8 +101,6 @@ SunburstDisplay.prototype.wrangle = function() {
 
     var nodeData = makeInnerData(catsWithOptions, 0, "Filtered Profiles", vis.data);
     
-   
-    console.log(nodeData);
     return nodeData;
 
 }
