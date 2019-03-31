@@ -41,3 +41,10 @@ To-Do's
 - Update color schemes
 - Get the draggable things
 - Sententree when you click on a category
+
+3/31 Minutes
+- We were reviewing things and we realized that a lot of our data wasn't working anymore
+- We fixed this by changing our checks in the csv file to all caps true
+- We also created the github pages page for our repo so that it can be viewed by others.
+- We aren't sure how to handle missing data like when people didn't fill out the ethnicity column or something like that
+    - Should we leave it as a blank wedge or leave it filled in as None or space out the rest of the data to fill in the gap?
