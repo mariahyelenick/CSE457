@@ -49,3 +49,31 @@ To-Do's
 - We also created the github pages page for our repo so that it can be viewed by others.
 - We aren't sure how to handle missing data like when people didn't fill out the ethnicity column or something like that
     - Should we leave it as a blank wedge or leave it filled in as None or space out the rest of the data to fill in the gap?
+    
+4/2 In Class Critiques
+Critique 1
+•	Are these clickable? – say that it’s draggable
+•	What has changed? – show the new order
+•	What is the data? People who responded to a survey? – need to have an intro blurb
+    o	Seems like people who submitted info about themselves
+•	How does relate to the title?
+•	Hover placement is confusing
+•	Add labels – not clear whatever is displayed is top three, can label within the sunburst
+•	Consider different color scales
+•	Can draw conclusions on the people that use the website
+•	Pick top three priorities, generate a match
+•	Separate the three in the circle from the rest of the list
+
+Critique 2
+•	What am I doing here?
+•	Seems to figure out what the purpose is by title
+•	Need to prompt to drag
+•	Seems to be ordering by preference, except only the top three are actually relevant
+•	Picking categories for soulmate
+•	Like interaction with categories
+•	Add two labels: give instruction with list, give hint about what the colors mean
+•	Visualization makes sense
+•	Is the circle one use or a group of users?
+•	Give the top three partners – on click display a sample of profiles that fit the categories?
+•	Not sure about the profile words; might get tricky
+
