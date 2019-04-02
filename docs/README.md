@@ -51,6 +51,7 @@ To-Do's
     - Should we leave it as a blank wedge or leave it filled in as None or space out the rest of the data to fill in the gap?
     
 4/2 In Class Critiques
+
 Critique 1
 •	Are these clickable? – say that it’s draggable
 •	What has changed? – show the new order
