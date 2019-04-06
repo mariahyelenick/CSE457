@@ -70,7 +70,6 @@ function ethnicityGrouper(d) {
         return"multi-racial";
     } else if (d.ethnicityArr.length == 1) {
         // console.log(d.ethnicityArr[0]);
-        console.log("cool");
         return d.ethnicityArr[0];
     } else {
         return "";
