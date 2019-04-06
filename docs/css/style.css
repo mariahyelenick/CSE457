@@ -1,13 +1,57 @@
-/* https://github.com/SortableJS/Sortable */
-body {
-	font-family: Helvetica Neue, Helvetica, Arial;
-	background: rgb(244,215,201); /* Old browsers */
-	background: -moz-linear-gradient(top, rgb(244,215,201) 0%, rgb(244,226,201) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgb(244,215,201) 0%,rgb(244,226,201) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgb(244,215,201) 0%,rgb(244,226,201) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	margin-bottom: 100px;
+body{
+	background-color: #F2F1EF;
+	color: #21295C;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+a{
+	color: #38023B;
+	display: block;
+	font-size: 13px;
+}
+#sortable {
+	width: 150px;
+	padding: 5px 10px;
+	margin-left: 20px;
+	float: left;
+}
+h1{
+	font-size: 30px;
+}
+h2{
+	font-size: 15px;
 }
 
+li{
+	list-style-type: none;
+	border: solid;
+	border-width: 2px;
+	border-color: #D30C7B;
+	margin: 2px;
+	padding: 2px;
+	width: 140px;
+	text-align: center;
+}
+#sunburst{
+	position: absolute;
+	width: 800px;
+	float: left;
+	left: 220px;
+	color: #D30C7B;
+}
+hr{
+	border-color: #D30C7B;
+}
+
+/* https://github.com/SortableJS/Sortable */
+/*body {
+	font-family: Helvetica Neue, Helvetica, Arial;
+	background: rgb(244,215,201); /* Old browsers */
+/*	background: -moz-linear-gradient(top, rgb(244,215,201) 0%, rgb(244,226,201) 100%); /* FF3.6-15 */
+/*	background: -webkit-linear-gradient(top, rgb(244,215,201) 0%,rgb(244,226,201) 100%); /* Chrome10-25,Safari5.1-6 */
+/*	background: linear-gradient(to bottom, rgb(244,215,201) 0%,rgb(244,226,201) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+/*	margin-bottom: 100px;
+}*/
+/*
 .header {
 	margin-top: 30px;
 }
@@ -238,7 +282,5 @@ input[type=range]:focus::-ms-fill-upper {
 .blue-background-class {
 	background-color: #C8EBFB;
 }
+*/
 
-#sortable {
-	list-style-type: none;
-}
