@@ -1,4 +1,5 @@
 var allData = [];
+var dataCats = {};
 
 var sunburst, cluster, senten;
 
@@ -9,7 +10,7 @@ function loadData() {
         if (error) {
             console.log("Error loading data: " + error);
         } else {
-
+            var i = 0;
             data.forEach(function(d) {
                 delete d[""];
                 delete d["Unnamed: 0"];
@@ -40,7 +41,26 @@ function loadData() {
                 // }
                 // console.log(d.city + " " + d.state + " " + d.country);
 
+                
+                // if (i < 1000) {
+                // for (var key in d) {
+                    
+                //     //console.log(d[key]);
+                //     if (dataCats[key] == null) {
+                //         dataCats[key] = [];
+                //     }
+                //     if (!dataCats[key].includes(d[key])) {
+                //         dataCats[key].push(d[key]);
+                //     }
+
+                // }
+                //    i = i + 1;
+                // }
+                
+                
+
             });
+            console.log(dataCats);
             console.log(data);
             allData = data;
 

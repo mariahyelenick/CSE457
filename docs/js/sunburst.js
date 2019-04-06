@@ -63,15 +63,16 @@ SunburstDisplay.prototype.init = function() {
             return "wedge";
         })
         .on("mouseover", vis.tip.show)
-        .on("mouseout", vis.tip.hide);
+        .on("mouseout", vis.tip.hide)
+        .on("click", function(d) {
+            vis.viewSententree(d.data.sets, d.data.children);
+        });
     vis.svg.call(vis.tip);
 }
 
 SunburstDisplay.prototype.wrangle = function() {
     var vis = this;
     var categories = getCategories();
-    var catsWithOptions = [];
-    
     var catsWithOptions = [];
 
     for (var i=0; i < categories.length; i++) {
@@ -81,6 +82,9 @@ SunburstDisplay.prototype.wrangle = function() {
         catsWithOptions.push(obj);
     }
 
+    console.log("catsWithOptions:")
+    console.log(catsWithOptions);
+
     vis.data.forEach(function(d) {
         for (var i=0; i < catsWithOptions.length; i++) {
             if (!catsWithOptions[i].optionNames.includes(d[catsWithOptions[i].catName])) { // option exists in array already
@@ -88,21 +92,18 @@ SunburstDisplay.prototype.wrangle = function() {
             }
         }
     });
-    // console.log(catsWithOptions);
-    // catsWithOptions.optionNames.sort((a,b) => {
-    //     // if (a)
-    //     console.log(a);
-    //     return -1;
-    //     // if (typeof a == "number") {
-
-    //     // }
-    // });
-    // console.log(catsWithOptions);
 
     var nodeData = makeInnerData(catsWithOptions, 0, "Filtered Profiles", vis.data);
     
     return nodeData;
 
+}
+
+SunburstDisplay.prototype.viewSententree = function(data, chillens) {
+    console.log(data);
+    chillens.forEach(function(d) {
+        console.log(d.name);
+    });
 }
 
 function breakSetIntoOptions(cat, dataSet) {
