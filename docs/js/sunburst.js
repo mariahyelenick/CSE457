@@ -75,18 +75,24 @@ SunburstDisplay.prototype.update = function() {
         .attr("d", vArc)
         .attr("transform", "translate(" + vis.svgWidth/2 + ", 300)")
         .style("fill", function (d) { 
-            if (d.depth == 0 || (d.depth == 1 && d.data.name == "") || (d.depth == 2 && d.parent.data.name == "") || (d.depth == 3 && d.parent.parent.data.name == "")) {
+            if (d.depth == 0) {
                 return "none";
-            } else if(d.depth == 1) {
+            }
+            // if (d.depth == 0 || (d.depth == 1 && d.data.name == "") || (d.depth == 2 && d.parent.data.name == "") || (d.depth == 3 && d.parent.parent.data.name == "")) {
+            //     return "none";
+            // } else 
+            else if (d.depth == 1) {
                 return colorInner(d.data.name);
             }
-            else if(d.depth == 2) {
+            else if (d.depth == 2) {
                 return colorMiddle(d.data.name);
             }
             else {
                 return colorOuter(d.data.name);
             }
         })
+        .style("stroke", "white")
+        .style("stroke-width", 1.5)
         .attr("class", function(d) {
             if (d.data.size == 0) {
                 return "empty wedge";
@@ -161,18 +167,29 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
 }
 
 function getCategories() {
+    var dropDown = document.getElementById("numCat");
+    var num = dropDown.options[dropDown.selectedIndex].value;
+    // console.log(num);
+
     var array = $("#sortable").sortable('toArray');
     d3.selectAll("#sortable li").classed("top3", false).classed("first", false).classed("second", false).classed("third", false);
     
     var newarray = [];
     newarray.push(array[0]);
-    newarray.push(array[1]);
-    newarray.push(array[2]);
+    d3.select("#" + array[0]).classed("top3", true).classed("first", true);
+    if (num == "two" || num == "three") {
+        newarray.push(array[1]);
+        d3.select("#" + array[1]).classed("top3", true).classed("second", true);
+    }
+    if (num == "three") {
+        newarray.push(array[2]);
+        d3.select("#" + array[2]).classed("top3", true).classed("third", true);
+    }
     console.log(newarray);
 
-    d3.select("#" + array[0]).classed("top3", true).classed("first", true);
-    d3.select("#" + array[1]).classed("top3", true).classed("second", true);
-    d3.select("#" + array[2]).classed("top3", true).classed("third", true);
+    
+    
+    
     
     return newarray;
 }
