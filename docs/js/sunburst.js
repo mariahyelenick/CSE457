@@ -141,7 +141,12 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
     if (index < catsWithOptions.length-1) {
         obj.children = [];
         catsWithOptions[index].optionNames.forEach(function(d) {
-            obj.children.push(makeInnerData(catsWithOptions, index+1, d, obj.sets[d]));
+            if (d == "") {
+                obj.children.push(makeInnerData(catsWithOptions, index+1, d, obj.sets[d]));
+            } else {
+                console.log(d);
+            }
+            
         });
     } else {
         obj.children = [];
@@ -155,9 +160,21 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
 
 function getCategories() {
     var array = $("#sortable").sortable('toArray');
+    console.log("removing old classes");
+    d3.selectAll("#sortable li").classed("top3", false).classed("first", false).classed("second", false).classed("third", false);
+    
     var newarray = [];
     newarray.push(array[0]);
     newarray.push(array[1]);
     newarray.push(array[2]);
+
+    console.log("adding new classes");
+    var t1 = d3.select("#" + array[0]);
+    t1.attr("class", t1.attr("class") + " top3 first");
+    var t2 = d3.select("#" + array[1]);
+    t2.attr("class", t2.attr("class") + " top3 second");
+    var t3 = d3.select("#" + array[2]);
+    t3.attr("class", t3.attr("class") + " top3 third");
+    
     return newarray;
 }
