@@ -22,6 +22,7 @@ li{
 	margin: 2px;
 	padding: 2px;
 	width: 140px;
+	text-align: center;
 }
 #sunburst{
 	position: absolute;
