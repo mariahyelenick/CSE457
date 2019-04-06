@@ -41,7 +41,12 @@ li{
 hr{
 	border-color: #D30C7B;
 }
-
+.top3{
+	font-weight: bold;
+}
+#third{
+	margin-bottom: 10px;
+}
 /* https://github.com/SortableJS/Sortable */
 /*body {
 	font-family: Helvetica Neue, Helvetica, Arial;
