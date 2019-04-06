@@ -31,23 +31,30 @@ Click on any slice to explore the people who fit those attributes.
 </div>
 <hr>
 <h3>My Ranking</h3>
-<ul id="sortable">
-  <li id="sex" class="ui-state-default top3 first"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Sex</li>
-  <li id="startagebucket10" class="ui-state-default top3 second"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Age range</li>
-  <li id="haspets" class="ui-state-default top3 third"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Has pets</li>
-  <li id="height" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Height</li>
-  <li id="ethnicityGroup" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Ethnicity</li>
-  <li id="smokes" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Smoking Habit</li>
-  <li id="drinks" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Drinking Habit</li>
-  <li id="drugs" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Does drugs</li>
-  <li id="body_type" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Body type</li>
-  <li id="diet" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Diet</li>
-  <li id="orientation" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Sexual Orientation</li>
-  <li id="actual_religion" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Actual religion</li>
-  <!--<li id="thoughts_on_religion" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Thoughts on religion</li>-->
-  <li id="zodiac" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Zodiac sign</li>
-  <!--<li id="zodiac_thoughts" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Thoughts on zodiac signs</li>-->
-</ul>
+<div class="ranking">
+  <select id="numCat">
+    <option value="one">One Attribute</option>
+    <option value="two">Two Attributes</option>
+    <option value="three">Three Attributes</option>
+  </select>
+  <ul id="sortable">
+    <li id="sex" class="ui-state-default top3 first"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Sex</li>
+    <li id="startagebucket10" class="ui-state-default top3 second"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Age range</li>
+    <li id="haspets" class="ui-state-default top3 third"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Has pets</li>
+    <li id="height" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Height</li>
+    <li id="ethnicityGroup" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Ethnicity</li>
+    <li id="smokes" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Smoking Habit</li>
+    <li id="drinks" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Drinking Habit</li>
+    <li id="drugs" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Does drugs</li>
+    <li id="body_type" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Body type</li>
+    <li id="diet" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Diet</li>
+    <li id="orientation" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Sexual Orientation</li>
+    <li id="actual_religion" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Actual religion</li>
+    <!--<li id="thoughts_on_religion" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Thoughts on religion</li>-->
+    <li id="zodiac" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Zodiac sign</li>
+    <!--<li id="zodiac_thoughts" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Thoughts on zodiac signs</li>-->
+  </ul>
+</div>
 <div id="sunburst"></div>
   
 <!-- https://jqueryui.com/sortable/ -->

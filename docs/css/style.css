@@ -11,8 +11,6 @@ a{
 #sortable {
 	width: 150px;
 	padding: 5px 10px;
-	margin-left: 20px;
-	float: left;
 }
 h1{
 	font-size: 30px;
@@ -20,7 +18,10 @@ h1{
 h2{
 	font-size: 15px;
 }
-
+.ranking{
+	float: left;
+	margin-left: 20px;
+}
 li{
 	list-style-type: none;
 	border: solid;
