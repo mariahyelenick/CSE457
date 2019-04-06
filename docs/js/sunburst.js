@@ -18,6 +18,37 @@ SunburstDisplay.prototype.init = function() {
     vis.svg = div.append("svg").attr("height", vis.svgHeight).attr("width", vis.svgWidth).attr("id", "sunburst_svg");
     vis.radius = Math.min(vis.svgHeight, vis.svgWidth) /2;
 
+    vis.update();
+}
+
+SunburstDisplay.prototype.wrangle = function() {
+    var vis = this;
+    var categories = getCategories();
+    var catsWithOptions = [];
+
+    for (var i=0; i < categories.length; i++) {
+        var obj = {};
+        obj.catName = categories[i];
+        obj.optionNames = [];
+        catsWithOptions.push(obj);
+    }
+
+    vis.data.forEach(function(d) {
+        for (var i=0; i < catsWithOptions.length; i++) {
+            if (!catsWithOptions[i].optionNames.includes(d[catsWithOptions[i].catName])) { // option exists in array already
+                catsWithOptions[i].optionNames.push(d[catsWithOptions[i].catName]);
+            }
+        }
+    });
+
+    var nodeData = makeInnerData(catsWithOptions, 0, "Filtered Profiles", vis.data);
+    
+    return nodeData;
+
+}
+
+SunburstDisplay.prototype.update = function() {
+    var vis = this;
     vis.wrangledData = vis.wrangle();
     var vLayout = d3.partition().size([2 * Math.PI, Math.min(vis.svgWidth, vis.svgHeight) / 2]);
 
@@ -68,32 +99,6 @@ SunburstDisplay.prototype.init = function() {
             vis.viewSententree(d.data.sets, d.data.children);
         });
     vis.svg.call(vis.tip);
-}
-
-SunburstDisplay.prototype.wrangle = function() {
-    var vis = this;
-    var categories = getCategories();
-    var catsWithOptions = [];
-
-    for (var i=0; i < categories.length; i++) {
-        var obj = {};
-        obj.catName = categories[i];
-        obj.optionNames = [];
-        catsWithOptions.push(obj);
-    }
-
-    vis.data.forEach(function(d) {
-        for (var i=0; i < catsWithOptions.length; i++) {
-            if (!catsWithOptions[i].optionNames.includes(d[catsWithOptions[i].catName])) { // option exists in array already
-                catsWithOptions[i].optionNames.push(d[catsWithOptions[i].catName]);
-            }
-        }
-    });
-
-    var nodeData = makeInnerData(catsWithOptions, 0, "Filtered Profiles", vis.data);
-    
-    return nodeData;
-
 }
 
 SunburstDisplay.prototype.viewSententree = function(data, chillens) {
@@ -163,13 +168,11 @@ function getCategories() {
     newarray.push(array[0]);
     newarray.push(array[1]);
     newarray.push(array[2]);
+    console.log(newarray);
 
-    var t1 = d3.select("#" + array[0]);
-    t1.attr("class", t1.attr("class") + " top3 first");
-    var t2 = d3.select("#" + array[1]);
-    t2.attr("class", t2.attr("class") + " top3 second");
-    var t3 = d3.select("#" + array[2]);
-    t3.attr("class", t3.attr("class") + " top3 third");
+    d3.select("#" + array[0]).classed("top3", true).classed("first", true);
+    d3.select("#" + array[1]).classed("top3", true).classed("second", true);
+    d3.select("#" + array[2]).classed("top3", true).classed("third", true);
     
     return newarray;
 }

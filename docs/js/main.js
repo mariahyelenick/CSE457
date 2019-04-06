@@ -60,7 +60,6 @@ function loadData() {
                 
 
             });
-            console.log(dataCats);
             console.log(data);
             allData = data;
 
