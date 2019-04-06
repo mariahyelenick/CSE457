@@ -19,12 +19,12 @@ li{
 	border-width: 2px;
 	margin: 2px;
 	padding: 2px;
-	width: 100px;
+	width: 140px;
 }
 #sunburst{
 	border: solid;
 	position: absolute;
-	left: 200px;
+	left: 220px;
 	width: 800px;
 }
 
