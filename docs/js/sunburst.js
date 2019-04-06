@@ -82,9 +82,6 @@ SunburstDisplay.prototype.wrangle = function() {
         catsWithOptions.push(obj);
     }
 
-    console.log("catsWithOptions:")
-    console.log(catsWithOptions);
-
     vis.data.forEach(function(d) {
         for (var i=0; i < catsWithOptions.length; i++) {
             if (!catsWithOptions[i].optionNames.includes(d[catsWithOptions[i].catName])) { // option exists in array already
@@ -100,9 +97,9 @@ SunburstDisplay.prototype.wrangle = function() {
 }
 
 SunburstDisplay.prototype.viewSententree = function(data, chillens) {
-    console.log(data);
+    // console.log(data);
     chillens.forEach(function(d) {
-        console.log(d.name);
+        // console.log(d.name);
     });
 }
 
@@ -141,7 +138,7 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
     if (index < catsWithOptions.length-1) {
         obj.children = [];
         catsWithOptions[index].optionNames.forEach(function(d) {
-            if (d == "") {
+            if (d != "" || d == false || d == true) {
                 obj.children.push(makeInnerData(catsWithOptions, index+1, d, obj.sets[d]));
             } else {
                 console.log(d);
@@ -160,7 +157,6 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
 
 function getCategories() {
     var array = $("#sortable").sortable('toArray');
-    console.log("removing old classes");
     d3.selectAll("#sortable li").classed("top3", false).classed("first", false).classed("second", false).classed("third", false);
     
     var newarray = [];
@@ -168,7 +164,6 @@ function getCategories() {
     newarray.push(array[1]);
     newarray.push(array[2]);
 
-    console.log("adding new classes");
     var t1 = d3.select("#" + array[0]);
     t1.attr("class", t1.attr("class") + " top3 first");
     var t2 = d3.select("#" + array[1]);
