@@ -4,8 +4,6 @@ sys.path.append("C:/Users/maria/Anaconda3/Lib/site-packages")
 
 readfile = open("C:/Users/maria/OneDrive/WUSTL/2018-19/CSE_457/Final Project/CSE457/docs/data/profiles_wrangled.csv", 'r')
 writefile = open("C:/Users/maria/OneDrive/WUSTL/2018-19/CSE_457/Final Project/CSE457/docs/data/profiles_wrangled.json", 'w')
-data = {}
-data["profiles"] = []
 
 import pandas as pd
 import numpy as np
@@ -14,14 +12,8 @@ dnp = d.to_numpy()
 # d["ethnicityGroup"] = np.nan
 
 def function(datapoint):
-
-# for index, datapoint in d.iterrows():
-    # datapoint = dict(data)
-    # print(datapoint)
     arr = []
-    # print(datapoint.white)
     if (datapoint.white):
-        # print('hi')
         arr.append("white")
     if (datapoint.black):
         arr.append("black") 
@@ -38,10 +30,7 @@ def function(datapoint):
     if (datapoint.asian):
         arr.append("asian")
     if (len(arr) > 1):
-        # print(len(arr))
-        # datapoint.ethnicityGroup = "multi-racial"
         return "multi-racial"
-        # print(datapoint)
     elif (len(arr) == 1):
         return arr[0]
     else:
@@ -84,7 +73,7 @@ d["ethnicityGroup"] = d.apply(function, axis=1)
     # //     
 
     # // 
-d = d.to_json()
+d = d.to_json(orient="records")
 # for prof in d:
 #     if(prof != "Unnamed: 0.1"):
 #         obj = {}
