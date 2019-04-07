@@ -65,9 +65,9 @@ SunburstDisplay.prototype.update = function() {
         .outerRadius(function (d) { return d.y1; });
 
     var g = vis.svg.append("g");
-    var colorInner = d3.scaleOrdinal(d3.schemeCategory10);
-    var colorMiddle = d3.scaleOrdinal(d3.schemeSet3);
-    var colorOuter = d3.scaleOrdinal(d3.schemeDark2);
+    var colorInner = d3.scaleOrdinal(d3.schemeDark2);
+    var colorMiddle = d3.scaleOrdinal(d3.schemeCategory10);
+    var colorOuter = d3.scaleOrdinal(d3.schemeSet3);
 
     g.selectAll('path')
         .data(vNodes)
