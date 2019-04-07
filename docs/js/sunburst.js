@@ -150,8 +150,7 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
     if (index < catsWithOptions.length-1) {
         obj.children = [];
         catsWithOptions[index].optionNames.forEach(function(d) {
-            if (d != "" || d == false || d == true) {
-                // console.log(d);
+            if ((d != null && d != "") || (d == false || d == true)) {
                 obj.children.push(makeInnerData(catsWithOptions, index+1, d, obj.sets[d]));
             } else {
                 console.log(d);
@@ -161,7 +160,7 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
     } else {
         obj.children = [];
         catsWithOptions[index].optionNames.forEach(function(d) {
-            if (d != "" || d == false || d == true) {
+            if ((d != null && d != "") || (d == false || d == true)) {
                 obj.children.push(makeLeafData(d, obj.sets[d]));
             } else {
                 console.log(d);
