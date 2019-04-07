@@ -49,6 +49,7 @@ SunburstDisplay.prototype.wrangle = function() {
 
 SunburstDisplay.prototype.update = function() {
     var vis = this;
+    vis.svg.select("g").remove();
     vis.wrangledData = vis.wrangle();
     var vLayout = d3.partition().size([2 * Math.PI, Math.min(vis.svgWidth, vis.svgHeight) / 2]);
 
@@ -174,6 +175,7 @@ function getCategories() {
     var array = $("#sortable").sortable('toArray');
     d3.selectAll("#sortable li").classed("top3", false).classed("first", false).classed("second", false).classed("third", false);
     
+
     var newarray = [];
     newarray.push(array[0]);
     d3.select("#" + array[0]).classed("top3", true).classed("first", true);

@@ -45,7 +45,7 @@ hr{
 .top3{
 	font-weight: bold;
 }
-.third{
+.top3:last-child-of-type{
 	margin-bottom: 20px;
 }
 /* https://github.com/SortableJS/Sortable */
