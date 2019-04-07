@@ -66,7 +66,7 @@ SunburstDisplay.prototype.update = function() {
 
     var g = vis.svg.append("g");
     var colorInner = d3.scaleOrdinal(d3.schemeCategory10);
-    var colorMiddle = d3.scaleOrdinal(d3.schemeCategory20);
+    var colorMiddle = d3.scaleOrdinal(d3.schemeSet3);
     var colorOuter = d3.scaleOrdinal(d3.schemeCategory30);
 
     g.selectAll('path')
