@@ -93,7 +93,7 @@ SunburstDisplay.prototype.update = function() {
             }
         })
         .style("stroke", "white")
-        .style("stroke-width", 1.5)
+        .style("stroke-width", .5)
         .attr("class", function(d) {
             if (d.data.size == 0) {
                 return "empty wedge";
@@ -151,6 +151,7 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
         obj.children = [];
         catsWithOptions[index].optionNames.forEach(function(d) {
             if (d != "" || d == false || d == true) {
+                // console.log(d);
                 obj.children.push(makeInnerData(catsWithOptions, index+1, d, obj.sets[d]));
             } else {
                 console.log(d);
@@ -160,7 +161,12 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
     } else {
         obj.children = [];
         catsWithOptions[index].optionNames.forEach(function(d) {
-            obj.children.push(makeLeafData(d, obj.sets[d]));
+            if (d != "" || d == false || d == true) {
+                obj.children.push(makeLeafData(d, obj.sets[d]));
+            } else {
+                console.log(d);
+            }
+            
         });
     }
 
@@ -187,7 +193,7 @@ function getCategories() {
         newarray.push(array[2]);
         d3.select("#" + array[2]).classed("top3", true).classed("third", true);
     }
-    console.log(newarray);
+    //console.log(newarray);
 
     
     
