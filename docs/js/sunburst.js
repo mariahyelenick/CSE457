@@ -152,8 +152,6 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
         catsWithOptions[index].optionNames.forEach(function(d) {
             if ((d != null && d != "") || (d == false || d == true)) {
                 obj.children.push(makeInnerData(catsWithOptions, index+1, d, obj.sets[d]));
-            } else {
-                console.log(d);
             }
             
         });
@@ -162,8 +160,6 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
         catsWithOptions[index].optionNames.forEach(function(d) {
             if ((d != null && d != "") || (d == false || d == true)) {
                 obj.children.push(makeLeafData(d, obj.sets[d]));
-            } else {
-                console.log(d);
             }
             
         });
