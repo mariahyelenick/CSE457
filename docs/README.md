@@ -32,6 +32,7 @@ Resources Used
 - https://bl.ocks.org/denjn5/e1cdbbe586ac31747b4a304f8f86efa5 (Simpler Sunburst Help)
 - https://stackoverflow.com/questions/7176908/how-to-get-index-of-object-by-its-property-in-javascript (finding objects with specific attributes)
 - https://github.com/SortableJS/Sortable (drag order of attributes for sunburst)
+- https://openclipart.org/ (for clipart/laundry symbols)
 
 3/28 Minutes
 - We got the sunburst to work! 
@@ -84,3 +85,11 @@ Critique 2
 - We changed our filtered data a bit to do more wrangling beforehand, instead of doing it every time on load
 - We only display wedges that received some response, and are hiding incomplete data sets in queries
 - To-Do: still need to work on colors, need to work on displaying profiles and the senten tree
+
+4/7 Minutes
+- Got sunburst to work
+- Started working on the random profile viewing
+- Updated color schemes
+- TODO: Finish random profile viewing/laundry symbols
+- TODO: Maybe make specific color palettes for each category
+- TODO: Make everything pretty
