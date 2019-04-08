@@ -114,9 +114,26 @@ SunburstDisplay.prototype.viewRandProf = function(datasets) {
     var randNum = Math.floor((Math.random()*datasets.length));
     var randProf = datasets[randNum];
     console.log(randProf);
+    if(randProf.smokes != "never") {
+        var img = document.createElement("img")
+        img.src = "images/smokes.png";
+        img.width = 50;
+        img.height = 50;
+        var src = document.getElementById("profiles");
+        src.appendChild(img);
+    }
+    else {
+        var img = document.createElement("img")
+        img.src = "images/smokes_not.png";
+        img.width = 50;
+        img.height = 50;
+        var src = document.getElementById("profiles");
+        src.appendChild(img);
+    }
     d3.select("#profiles")
         .append("text")
         .text("Age:" + randProf.age);
+
 }
 
 SunburstDisplay.prototype.viewSententree = function(datasets) {
