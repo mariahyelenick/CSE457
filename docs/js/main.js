@@ -75,34 +75,33 @@ function loadData() {
     // });
 }
 
-function parseEthnicities(d) {
-    // console.log(d);
-    var arr = [];
-    if (d.white) { arr.push("white"); }
-    if (d.black) { arr.push("black"); }
-    if (d.middle_eastern) { arr.push("middle eastern"); }
-    if (d.native_american) { arr.push("native american"); }
-    if (d.pacific_islander) { arr.push("pacific islander"); }
-    if (d.indian) { arr.push("indian"); }
-    if (d.hispanic) { arr.push("hispanic"); }
-    if (d.asian) { arr.push("asian"); }
-    //console.log(arr);
-    return arr;
-}
+// function parseEthnicities(d) {
+//     // console.log(d);
+//     var arr = [];
+//     if (d.white) { arr.push("white"); }
+//     if (d.black) { arr.push("black"); }
+//     if (d.middle_eastern) { arr.push("middle eastern"); }
+//     if (d.native_american) { arr.push("native american"); }
+//     if (d.pacific_islander) { arr.push("pacific islander"); }
+//     if (d.indian) { arr.push("indian"); }
+//     if (d.hispanic) { arr.push("hispanic"); }
+//     if (d.asian) { arr.push("asian"); }
+//     //console.log(arr);
+//     return arr;
+// }
 
-function ethnicityGrouper(d) {
-    if (d.ethnicityArr.length > 1) {
-        return"multi-racial";
-    } else if (d.ethnicityArr.length == 1) {
-        // console.log(d.ethnicityArr[0]);
-        return d.ethnicityArr[0];
-    } else {
-        return "";
-    }
-}
+// function ethnicityGrouper(d) {
+//     if (d.ethnicityArr.length > 1) {
+//         return"multi-racial";
+//     } else if (d.ethnicityArr.length == 1) {
+//         // console.log(d.ethnicityArr[0]);
+//         return d.ethnicityArr[0];
+//     } else {
+//         return "";
+//     }
+// }
 
 function createVis() {
 
     sunburst = new SunburstDisplay(allData);
-
 }

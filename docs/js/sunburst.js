@@ -103,16 +103,108 @@ SunburstDisplay.prototype.update = function() {
         .on("mouseover", vis.tip.show)
         .on("mouseout", vis.tip.hide)
         .on("click", function(d) {
-            vis.viewSententree(d.data.sets, d.data.children);
+            vis.viewSententree(d.data.profiles);
+            vis.viewRandProf(d.data.profiles);
         });
     vis.svg.call(vis.tip);
 }
 
-SunburstDisplay.prototype.viewSententree = function(data, chillens) {
-    // console.log(data);
-    chillens.forEach(function(d) {
-        // console.log(d.name);
+SunburstDisplay.prototype.viewRandProf = function(datasets) {
+    d3.select("#profiles").selectAll("*").remove();
+    var randNum = Math.floor((Math.random()*datasets.length));
+    var randProf = datasets[randNum];
+    console.log(randProf);
+    d3.select("#profiles")
+        .append("text")
+        .text("Age:" + randProf.age);
+}
+
+SunburstDisplay.prototype.viewSententree = function(datasets) {
+    sententreeprep = [];
+    var id = 0;
+    datasets.forEach(element => {
+        if(element["couldnt_live_without"]) {
+            var obj = {};
+            obj.id = id;
+            id++;
+            obj.count = 1;
+            obj.text = element["couldnt_live_without"]
+            sententreeprep.push(obj);
+        }
+        if(element["doing_with_my_life"]) {
+            var obj = {};
+            obj.id = id;
+            id++;
+            obj.count = 1;
+            obj.text = element["doing_with_my_life  "]
+            sententreeprep.push(obj);
+        }
+        if(element["favorite_stuff"]) {
+            var obj = {};
+            obj.id = id;
+            id++;
+            obj.count = 1;
+            obj.text = element["favorite_stuff"]
+            sententreeprep.push(obj);
+        }
+        if(element["first_noticeable_thing"]) {
+            var obj = {};
+            obj.id = id;
+            id++;
+            obj.count = 1;
+            obj.text = element["first_noticeable_thing"]
+            sententreeprep.push(obj);
+        }
+        if(element["really_good_at"]) {
+            var obj = {};
+            obj.id = id;
+            id++;
+            obj.count = 1;
+            obj.text = element["really_good_at"]
+            sententreeprep.push(obj);
+        }
+        if(element["typical_Friday"]) {
+            var obj = {};
+            obj.id = id;
+            id++;
+            obj.count = 1;
+            obj.text = element["typical_Friday"]
+            sententreeprep.push(obj);
+        }
+        if(element["self_summary"]) {
+            var obj = {};
+            obj.id = id;
+            id++;
+            obj.count = 1;
+            obj.text = element["self_summary"]
+            sententreeprep.push(obj);
+        }
+        if(element["thinking_about"]) {
+            var obj = {};
+            obj.id = id;
+            id++;
+            obj.count = 1;
+            obj.text = element["thinking_about"]
+            sententreeprep.push(obj);
+        }
+        if(element["secrets"]) {
+            var obj = {};
+            obj.id = id;
+            id++;
+            obj.count = 1;
+            obj.text = element["secrets"]
+            sententreeprep.push(obj);
+        }
+        if(element["message_if"]) {
+            var obj = {};
+            obj.id = id;
+            id++;
+            obj.count = 1;
+            obj.text = element["message_if"]
+            sententreeprep.push(obj);
+        }
     });
+    sententree(sententreeprep);
 }
 
 function breakSetIntoOptions(cat, dataSet) {
@@ -138,6 +230,7 @@ function makeLeafData(optionName, dataSet) {
     var obj = {};
     obj.name = optionName;
     obj.size = dataSet.length;
+    obj.profiles = dataSet;
     return obj;
 }
 
@@ -145,7 +238,7 @@ function makeInnerData(catsWithOptions, index, optionName, dataSet) {
     var obj = {};
     obj.name = optionName;
     obj.sets = breakSetIntoOptions(catsWithOptions[index], dataSet);
-
+    obj.profiles = dataSet;
 
     if (index < catsWithOptions.length-1) {
         obj.children = [];

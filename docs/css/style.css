@@ -33,7 +33,7 @@ li{
 	text-align: center;
 }
 #sunburst{
-	position: absolute;
+	/* position: absolute; */
 	width: 800px;
 	float: left;
 	left: 220px;
@@ -48,6 +48,19 @@ hr{
 .top3:last-child-of-type{
 	margin-bottom: 20px;
 }
+#vis1 {
+	height: min-content;
+	/* display: block; */
+	margin-bottom: 50px;
+}
+#sententree {
+	display: block;
+	clear: both;
+}
+#profiles {
+	outline: 5px black
+}
+
 /* https://github.com/SortableJS/Sortable */
 /*body {
 	font-family: Helvetica Neue, Helvetica, Arial;
