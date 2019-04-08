@@ -78,3 +78,9 @@ Critique 2
 - Give the top three partners – on click display a sample of profiles that fit the categories?
 - Not sure about the profile words; might get tricky
 
+4/6 Minutes
+- Added directions for usage
+- Modified attribute selection, can now choose how many attributes you want to display and bolds the displayed categories
+- We changed our filtered data a bit to do more wrangling beforehand, instead of doing it every time on load
+- We only display wedges that received some response, and are hiding incomplete data sets in queries
+- To-Do: still need to work on colors, need to work on displaying profiles and the senten tree
